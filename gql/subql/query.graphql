@@ -1,0 +1,258 @@
+query GetFantokens($first: Int, $filter: FantokenFilter) {
+  fantokens(first: $first, filter: $filter, orderBy: CREATED_HEIGHT_DESC) {
+    edges {
+      cursor
+      node {
+        id
+        symbol
+        name
+        metadata {
+          image
+        }
+        supply
+        maxSupply
+      }
+    }
+  }
+}
+
+query GetFantoken($denom: String!) {
+  fantoken(id: $denom) {
+    id
+    symbol
+    name
+    supply
+    maxSupply
+    authorityId
+    minterId
+    creatorId
+    uri
+    metadata {
+      image
+      biography
+      projectInfo
+      links
+    }
+    updatedHeight
+  }
+}
+
+query GetCollections($first: Int) {
+  collections(first: $first, orderBy: CREATED_AT_DESC) {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        name
+        image
+        verified
+      }
+    }
+  }
+}
+
+query GetVerifiedCollections($first: Int) {
+  collections(
+    first: $first
+    orderBy: CREATED_AT_DESC
+    filter: { verified: { equalTo: true } }
+  ) {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        name
+        image
+        verified
+      }
+    }
+  }
+}
+
+query GetUnverifiedCollections($first: Int) {
+  collections(
+    first: $first
+    orderBy: CREATED_AT_DESC
+    filter: { verified: { equalTo: false } }
+  ) {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        name
+        image
+        verified
+      }
+    }
+  }
+}
+
+query GetCollectionsByUser($first: Int, $creator: String!) {
+  collections(
+    first: $first
+    orderBy: NAME_ASC
+    filter: { creatorId: { equalTo: $creator } }
+  ) {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        name
+        image
+        verified
+      }
+    }
+  }
+}
+
+query GetCollection($id: String!) {
+  collection(id: $id) {
+    id
+    image
+    cover
+    symbol
+    name
+    description
+    creatorId
+    adminId
+    verified
+    nfts(first: 100, orderBy: CREATED_AT_DESC) {
+      totalCount
+      edges {
+        node {
+          id
+          tokenId
+          collectionId
+          metadata {
+            name
+            image
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetNft($id: String!) {
+  nft(id: $id) {
+    tokenId
+    collectionId
+    minterId
+    ownerId
+    sellerFee
+    paymentAddress
+    metadata {
+      name
+      description
+      image
+      attributes
+    }
+    collection {
+      id
+      name
+      image
+      creatorId
+      nfts(
+        first: 6
+        orderBy: CREATED_AT_DESC
+        filter: { id: { notEqualTo: $id } }
+      ) {
+        totalCount
+        edges {
+          node {
+            id
+            tokenId
+            collectionId
+            metadata {
+              name
+              image
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetAccount($id: String!) {
+  account(id: $id) {
+    id
+    nftsOwned {
+      totalCount
+    }
+    nftsMinted {
+      totalCount
+    }
+  }
+}
+
+query GetAccountNftOwned($id: String!) {
+  account(id: $id) {
+    id
+    nftsOwned(first: 100, orderBy: CREATED_AT_DESC) {
+      totalCount
+      edges {
+        node {
+          id
+          tokenId
+          collectionId
+          metadata {
+            name
+            image
+          }
+        }
+      }
+    }
+  }
+}
+
+query GetAccountNftMinted($id: String!) {
+  account(id: $id) {
+    id
+    nftsMinted(first: 100, orderBy: CREATED_AT_DESC) {
+      totalCount
+      edges {
+        node {
+          id
+          tokenId
+          collectionId
+          metadata {
+            name
+            image
+          }
+        }
+      }
+    }
+  }
+}
+
+query LaunchpartyByCollection($address: String!) {
+  launchparties(filter: { collectionId: { equalTo: $address } }) {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        collection {
+          id
+          verified
+        }
+        name
+        symbol
+        maxEditions
+        startTime
+        price
+        paymentAddress
+        sellerFeeBps
+        creator {
+          id
+          verified
+        }
+      }
+    }
+  }
+}

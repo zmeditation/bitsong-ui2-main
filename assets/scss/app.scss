@@ -1,0 +1,47 @@
+@use 'sass:map';
+
+$font-family-app: 'Circular Std', sans-serif !default;
+
+$grid-breakpoints: (
+  'xs': 0,
+  'sm': 600px,
+  'md': 960px,
+  'lg': 1280px,
+  'xl': 1920px,
+  'xxl': 2560px,
+);
+
+@forward 'vuetify/settings' with ($body-font-family: $font-family-app !default,
+  $grid-breakpoints: $grid-breakpoints !default,
+  $container-max-widths: ('xs': null,
+    'sm': null,
+    'md': map.get($grid-breakpoints, 'md') * 0.9375,
+    'lg': map.get($grid-breakpoints, 'lg') * 0.9375,
+    'xl': map.get($grid-breakpoints, 'xl') * 0.67,
+    //'xxl': map.get($grid-breakpoints, 'xxl') * 0.67,
+  ));
+
+@font-face {
+  font-family: 'Circular Std';
+  font-weight: normal;
+  font-style: normal;
+  src: local('Circular Std Book'), local('CircularStd-Book'), url('@/assets/fonts/CircularStd-Book.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Circular Std';
+  font-weight: 500;
+  font-style: normal;
+  src: local('Circular Std Medium'), local('CircularStd-Medium'), url('@/assets/fonts/CircularStd-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Circular Std';
+  font-weight: bold;
+  font-style: normal;
+  src: local('Circular Std Bold'), local('CircularStd-Bold'), url('@/assets/fonts/CircularStd-Bold.woff2') format('woff2');
+}
+
+.v-messages__message {
+  line-height: 16px !important;
+}

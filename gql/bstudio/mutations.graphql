@@ -1,0 +1,17 @@
+mutation FantokenUploadMetadata($metadata: FantokenMetadataInput!) {
+  fantokenUploadMetadata(metadata: $metadata)
+}
+
+mutation FantokenUploadLogo($logo: Upload!) {
+  fantokenUploadLogo(logo: $logo)
+}
+
+mutation NftCollectionUploadMetadata(
+  $metadata: NftCollectionUploadMetadataInput!
+) {
+  nftCollectionUploadMetadata(metadata: $metadata)
+}
+
+mutation NftUploadMetadata($metadata: NftUploadMetadataInput!) {
+  nftUploadMetadata(metadata: $metadata)
+}

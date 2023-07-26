@@ -1,0 +1,54 @@
+[
+  {
+    "title": "Home",
+    "prependIcon": "mdi-home",
+    "to": "/"
+  },
+  {
+    "title": "Profile",
+    "prependIcon": "mdi-account",
+    "to": "/user"
+  },
+  {
+    "title": "Fantokens",
+    "prependIcon": "mdi-circle-multiple",
+    "to": "/fantokens"
+  },
+  {
+    "title": "NFTs",
+    "prependIcon": "mdi-palette",
+    "to": "/nfts"
+  },
+  {
+    "title": "Releases",
+    "prependIcon": "mdi-music",
+    "children": [
+      {
+        "title": "Le mie releases",
+        "to": "/releases",
+        "exact": true
+      },
+      {
+        "title": "Crea Release",
+        "to": "/releases/create",
+        "exact": true
+      }
+    ]
+  },
+  {
+    "title": "Podcasts",
+    "prependIcon": "mdi-podcast",
+    "children": [
+      {
+        "title": "I miei Podcast",
+        "to": "/podcasts",
+        "exact": true
+      },
+      {
+        "title": "Crea Podcast",
+        "to": "/podcasts/create",
+        "exact": true
+      }
+    ]
+  }
+]
